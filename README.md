@@ -34,7 +34,7 @@
 
 | Column      | Type       | Options                        |
 | ----------- | ---------- | ------------------------------ |
-| total_price | references | null: false                    |
+| total_price | string     | null: false                    |
 | user        | references | null: false, foreign_key: true |
 | item        | references | null: false, foreign_key: true |
 
