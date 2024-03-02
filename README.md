@@ -15,8 +15,10 @@
 
 ### Association
 
-- has_many :items
+- has_many :purchases
 - has_many :orders
+- has_many :items
+- has_one :ordaddresser
 
 ## items テーブル
 
@@ -34,6 +36,7 @@
 
 ### Association
 
+- has_many :purchases
 - has_one :order
 - belongs_to :user
 
@@ -41,12 +44,39 @@
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| phone_number  | integer    | null: false                    |
-| zip_code      | integer    | null: false                    |
+| user          | references | null: false, foreign_key: true |
+| item          | references | null: false, foreign_key: true |
+| address       | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :item
+- belongs_to :user
+- has_one :address
+
+## addresses テーブル
+
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| phone_number  | string     | null: false                    |
+| zip_code      | string     | null: false                    |
 | city_id       | integer    | null: false                    |
-| address       | string     | null: false                    |
+| town          | string     | null: false                    |
 | house_number  | string     | null: false                    |
 | Building_name | string     |                                |
+| user          | references | null: false, foreign_key: true |
+
+
+### Association
+
+- belongs_to :orders
+- belongs_to :user
+
+
+## purchases テーブル
+
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
 | user          | references | null: false, foreign_key: true |
 | item          | references | null: false, foreign_key: true |
 
@@ -54,6 +84,7 @@
 
 - belongs_to :item
 - belongs_to :user
+
 
 ## article モデル
 
