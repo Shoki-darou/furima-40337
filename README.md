@@ -15,15 +15,14 @@
 
 ### Association
 
-- has_many :purchases
 - has_many :orders
 - has_many :items
-- has_one :ordaddresser
+
 
 ## items テーブル
 
-| Column    | Type       | Options     |
-| --------- | ---------- | ----------- |
+| Column          | Type       | Options     |
+| --------------- | ---------- | ----------- |
 | item_name       | string     | null: false |
 | content         | text       | null: false |
 | category_id     | integer    | null: false |
@@ -36,7 +35,6 @@
 
 ### Association
 
-- has_many :purchases
 - has_one :order
 - belongs_to :user
 
@@ -46,13 +44,11 @@
 | ------------- | ---------- | ------------------------------ |
 | user          | references | null: false, foreign_key: true |
 | item          | references | null: false, foreign_key: true |
-| address       | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :item
 - belongs_to :user
-- has_one :address
 
 ## addresses テーブル
 
@@ -63,32 +59,18 @@
 | city_id       | integer    | null: false                    |
 | town          | string     | null: false                    |
 | house_number  | string     | null: false                    |
-| Building_name | string     |                                |
-| user          | references | null: false, foreign_key: true |
+| building_name | string     |                                |
+| orders        | references | null: false, foreign_key: true |
 
 
 ### Association
 
 - belongs_to :orders
-- belongs_to :user
-
-
-## purchases テーブル
-
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| user          | references | null: false, foreign_key: true |
-| item          | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :item
-- belongs_to :user
 
 
 ## article モデル
 
-- belongs_to :city
+- belongs_to :city_id
 - belongs_to :category_id
 - belongs_to :delivery_id
 - belongs_to :days_to_ship_id
