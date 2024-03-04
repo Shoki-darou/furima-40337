@@ -1,3 +1,4 @@
+=begin
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :city_id
