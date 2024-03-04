@@ -1,5 +1,6 @@
-=begin
 class Item < ApplicationRecord
+=begin
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :city_id
   belongs_to :category_id
@@ -26,5 +27,5 @@ class Item < ApplicationRecord
   def was_attached?
     self.image.attached?
   end
-
+=end
 end

@@ -1,5 +1,6 @@
-=begin
 class Genre < ActiveHash::Base
+=begin
+
   self.data = [
     { id: 1, name: '---' },
     { id: 2, name: '北海道' },
@@ -54,5 +55,5 @@ class Genre < ActiveHash::Base
   include ActiveHash::Associations
   has_many :items
   has_many :addresses
-
+=end
 end
