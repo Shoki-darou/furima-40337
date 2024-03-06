@@ -12,7 +12,7 @@
     // 販売手数料を計算（価格の10%）
     const tax = Math.floor(price * 0.1);
     // 販売利益を計算（価格から販売手数料を引いた金額）
-    const profitAmount = price - tax;
+    const profitAmount = Math.floor(price - tax);
 
     // 販売手数料と販売利益をHTMLに反映
     addTaxPrice.textContent = tax.toLocaleString();

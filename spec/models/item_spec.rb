@@ -28,45 +28,56 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Image must be attached")
       end
       it 'categoryが選択されていなければ保存できない' do
-        @item.category = nil
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category Category can't be blank")
       end
       it 'deliveryが選択されていなければ保存できない' do
-        @item.delivery = nil
+        @item.delivery_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery Shipping fee status can't be blank")
       end
       it 'cityが選択されていなければ保存できない' do
-        @item.city = nil
+        @item.city_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("City Prefecture can't be blank")
       end
       it 'days_to_shipが選択されていなければ保存できない' do
-        @item.days_to_ship = nil
+        @item.days_to_ship_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Days to ship Scheduled delivery can't be blank")
       end
+
+      it 'statusが選択されていなければ保存できない' do
+        @item.status_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Status Sales status can't be blank")
+      end
+
       it 'priceが空では保存できない' do
         @item.price = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
+
       it 'priceが半角数字でなければ保存できない' do
         @item.price = '１２３４５'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
       end
-      it 'priceが0以下の値では保存できない' do
-        @item.price = 0
+      
+      it 'priceが300未満の値では保存できない' do
+        @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than 0")
+        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
       end
-      it 'statusが選択されていなければ保存できない' do
-        @item.status = nil
+      
+      it 'priceが9,999,999より大きい値では保存できない' do
+        @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status Sales status can't be blank")
+        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
+      
       it '紐づくユーザーが存在しないと保存できない' do
         @item.user = nil
         @item.valid?

@@ -1,5 +1,4 @@
 class Address < ApplicationRecord
-=begin
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :city
 

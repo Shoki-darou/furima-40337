@@ -1,5 +1,4 @@
 class Item < ApplicationRecord
-=begin
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :city
@@ -14,7 +13,7 @@ class Item < ApplicationRecord
 
   validates :item_name, presence: true
   validates :content,   presence: true
-  validates :price,     presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 
   validates :city_id,         numericality: { other_than: 1 , message: "Prefecture can't be blank"}
   validates :category_id,     numericality: { other_than: 1 , message: "Category can't be blank"}
@@ -27,5 +26,4 @@ class Item < ApplicationRecord
   def image_attached
     errors.add(:image, "must be attached") unless image.attached?
   end
-=end
 end
