@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+=begin
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :city
   belongs_to :category
@@ -25,5 +27,5 @@ class Item < ApplicationRecord
   def image_attached
     errors.add(:image, "must be attached") unless image.attached?
   end
-
+=end
 end

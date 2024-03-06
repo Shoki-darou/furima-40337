@@ -1,4 +1,6 @@
-class Delivery < ActiveHash::Base
+
+class Genre < ActiveHash::Base
+=begin
   self.data = [
     { id: 1, name: '---' },
     { id: 2, name: '1~2発送' },
@@ -8,5 +10,5 @@ class Delivery < ActiveHash::Base
 
   include ActiveHash::Associations
   has_many :items
-
+=end
 end
