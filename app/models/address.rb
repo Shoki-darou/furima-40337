@@ -1,4 +1,5 @@
 class Address < ApplicationRecord
+=begin
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :city
 
@@ -12,3 +13,4 @@ class Address < ApplicationRecord
   validates :city_id, numericality: { other_than: 1 , message: "Prefecture can't be blank"}
 
 end
+
