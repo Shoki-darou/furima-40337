@@ -16,7 +16,8 @@ class ItemsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
+=begin
+  
   def show
     @item = Item.find(params[:id])
     @comment = Comment.new
@@ -45,7 +46,7 @@ class ItemsController < ApplicationController
     prototype.destroy
     redirect_to '/'
   end
-
+=end
   private
     def item_params
       params.require(:item).permit(:item_name, :content, :price, :category_id, :delivery_id, :city_id, :days_to_ship_id, :status_id, :image).merge(user_id: current_user.id)
