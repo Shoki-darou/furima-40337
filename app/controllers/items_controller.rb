@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-=begin
+  
   def index
     @items = Item.all
   end
@@ -9,11 +9,11 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.create(item_params)
+    @item = Item.new(item_params)
     if @item.save
       redirect_to '/'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -50,5 +50,4 @@ class ItemsController < ApplicationController
     def item_params
       params.require(:item).permit(:item_name, :content, :price, :category_id, :delivery_id, :city_id, :days_to_ship_id, :status_id, :image).merge(user_id: current_user.id)
     end
-=end
 end

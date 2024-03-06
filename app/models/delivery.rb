@@ -1,5 +1,4 @@
-=begin
-class Genre < ActiveHash::Base
+class Delivery < ActiveHash::Base
   self.data = [
     { id: 1, name: '---' },
     { id: 2, name: '1~2発送' },
