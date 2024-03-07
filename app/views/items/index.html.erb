@@ -129,15 +129,14 @@
     <ul class='item-lists'>
       <% @items.each do |item| %>
       <li class='list'>
-        <%= link_to "#" do %> <%# <=後でコメントアウトを外して消す %>
-        <%#= link_to item_path(item) do %>
+        <%= link_to item_path(item) do %>
         <div class='item-img-content'>
           <%= image_tag url_for(item.image), class: "item-img" %>
           <% if item.sold_out? %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
-        <% end %>
+          <% end %>
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
