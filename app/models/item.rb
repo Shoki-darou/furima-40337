@@ -26,4 +26,9 @@ class Item < ApplicationRecord
   def image_attached
     errors.add(:image, "must be attached") unless image.attached?
   end
+
+  def sold_out?
+    order.present?
+  end
+  
 end

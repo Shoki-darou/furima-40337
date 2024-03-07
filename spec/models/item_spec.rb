@@ -11,37 +11,44 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end
     end
+
     context '投稿できない場合' do
       it 'item_nameが空では保存できない' do
         @item.item_name = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Item name can't be blank")
       end
+
       it 'contentが空では保存できない' do
         @item.content = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Content can't be blank")
       end
+
       it 'imageが空では保存できない' do
         @item.image = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Image must be attached")
       end
+
       it 'categoryが選択されていなければ保存できない' do
         @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category Category can't be blank")
       end
+
       it 'deliveryが選択されていなければ保存できない' do
         @item.delivery_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery Shipping fee status can't be blank")
       end
+
       it 'cityが選択されていなければ保存できない' do
         @item.city_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("City Prefecture can't be blank")
       end
+      
       it 'days_to_shipが選択されていなければ保存できない' do
         @item.days_to_ship_id = 1
         @item.valid?
@@ -65,7 +72,7 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
       end
-      
+
       it 'priceが300未満の値では保存できない' do
         @item.price = 299
         @item.valid?
