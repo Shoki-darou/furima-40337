@@ -17,14 +17,12 @@ class ItemsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-=begin
-  
+
   def show
     @item = Item.find(params[:id])
-    @comment = Comment.new
-    @comments = @item.comments.includes(:user)
-  end
 
+  end
+=begin
   def edit
     @item = Item.find(params[:id])
     unless user_signed_in?
