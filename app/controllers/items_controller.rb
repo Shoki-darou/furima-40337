@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   
   def index
     @items = Item.all.order(created_at: :desc)
@@ -37,14 +37,15 @@ class ItemsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
-=begin
-  def destroy
-    @item = Item.find(params[:id])
-    @item.destroy
-    redirect_to '/'
-  end
-=end
 
+  def destroy
+    if current_user == @item.user
+      @item.destroy
+      redirect_to root_path, notice: "商品情報を削除しました"
+    else
+      redirect_to root_path, alert: "権限がありません"
+    end
+  end
   private
   def item_params
     params.require(:item).permit(:item_name, :content, :price, :category_id, :delivery_id, :city_id, :days_to_ship_id, :status_id, :image).merge(user_id: current_user.id)
