@@ -7,7 +7,11 @@ class OrdersController < ApplicationController
     @orders = Order.all
     @order_address = OrderAddress.new
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-    redirect_to root_path unless @item && !@item.sold_out? && !current_user&.id.eql?(@item.user_id)
+    if current_user
+      redirect_to root_path unless @item && !@item.sold_out? && !current_user.id.eql?(@item.user_id)
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def new
