@@ -22,7 +22,7 @@ RSpec.describe OrderAddress, type: :model do
 
     context '内容に問題がある場合' do
       it 'townが空だと保存できないこと' do
-        @order_address.town = nil
+        @order_address.town = ''
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Town can't be blank")
       end
@@ -77,6 +77,12 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.phone_number = '０9012341234'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number は10桁以上11桁以内の半角数値のみ保存可能です")
+      end
+
+      it 'tokenが空では購入できないこと' do
+        @purchase_address.token = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Token can't be blank")
       end
 
       it 'userが紐付いていないと保存できないこと' do

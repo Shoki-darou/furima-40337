@@ -8,8 +8,6 @@ FactoryBot.define do
     building_name { Faker::Company.name }
     phone_number { Faker::Number.number(digits: 11) }
 
-    association :user
-    association :item
   end
 end
 
