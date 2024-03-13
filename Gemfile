@@ -88,3 +88,5 @@ gem 'factory_bot_rails'
 gem 'faker'
 gem 'pry-rails'
 gem "gimei"
+gem 'payjp'
+gem 'gon'
