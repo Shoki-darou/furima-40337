@@ -34,31 +34,31 @@ RSpec.describe Item, type: :model do
       it 'categoryが選択されていなければ保存できない' do
         @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category Category can't be blank")
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
 
       it 'deliveryが選択されていなければ保存できない' do
         @item.delivery_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery Shipping fee status can't be blank")
+        expect(@item.errors.full_messages).to include("Delivery must be other than 1")
       end
 
       it 'cityが選択されていなければ保存できない' do
         @item.city_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("City Prefecture can't be blank")
+        expect(@item.errors.full_messages).to include("City must be other than 1")
       end
       
       it 'days_to_shipが選択されていなければ保存できない' do
         @item.days_to_ship_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Days to ship Scheduled delivery can't be blank")
+        expect(@item.errors.full_messages).to include("Days to ship must be other than 1")
       end
 
       it 'statusが選択されていなければ保存できない' do
         @item.status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status Sales status can't be blank")
+        expect(@item.errors.full_messages).to include("Status must be other than 1")
       end
 
       it 'priceが空では保存できない' do

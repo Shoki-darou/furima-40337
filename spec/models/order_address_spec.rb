@@ -48,7 +48,7 @@ RSpec.describe OrderAddress, type: :model do
       it 'cityが選択されていなければ保存できない' do
         @item.city_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("City Prefecture can't be blank")
+        expect(@item.errors.full_messages).to include("City must be other than 1")
       end
 
       it 'house_numberが空だと保存できないこと' do
@@ -80,9 +80,9 @@ RSpec.describe OrderAddress, type: :model do
       end
 
       it 'tokenが空では購入できないこと' do
-        @purchase_address.token = nil
-        @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Token can't be blank")
+        @order_address.token = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Token can't be blank")
       end
 
       it 'userが紐付いていないと保存できないこと' do
