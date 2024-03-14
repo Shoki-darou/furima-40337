@@ -37,6 +37,7 @@ RSpec.describe '商品出品機能', type: :system do
       visit root_path
     end
   end
+  
   context '新規投稿ができないとき'do
     it 'ログインしていないと新規投稿ページに遷移できない' do
       # トップページに遷移する

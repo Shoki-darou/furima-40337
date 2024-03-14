@@ -1,5 +1,4 @@
 class Item < ApplicationRecord
-
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :city
   belongs_to :category
@@ -11,15 +10,16 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-  validates :item_name, presence: true
-  validates :content,   presence: true
+  validates :item_name, :content, presence: true
   validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 
-  validates :city_id,         numericality: { other_than: 1 , message: "Prefecture can't be blank"}
-  validates :category_id,     numericality: { other_than: 1 , message: "Category can't be blank"}
-  validates :delivery_id,     numericality: { other_than: 1 , message: "Shipping fee status can't be blank"}
-  validates :days_to_ship_id, numericality: { other_than: 1 , message: "Scheduled delivery can't be blank"}
-  validates :status_id,       numericality: { other_than: 1 , message: "Sales status can't be blank"}
+  with_options numericality: { other_than: 1 } do
+    validates :city_id
+    validates :category_id
+    validates :delivery_id
+    validates :days_to_ship_id
+    validates :status_id
+  end
 
   validate :image_attached
 
@@ -30,5 +30,4 @@ class Item < ApplicationRecord
   def sold_out?
     order.present?
   end
-  
 end
